@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using QandA.Db;
+using QandA.Interface;
 
 namespace QandA.Methods
 {
-    public class QuestionsRepository
+    public class QuestionsRepository : IQuestionsRepository
     {
         readonly QandAEntities db;
         public QuestionsRepository(QandAEntities db)
@@ -17,7 +18,8 @@ namespace QandA.Methods
         public QuestionEx GetQuestion(int Id)
         {
             var r = db.Questions.Where(c => c.Id == Id).FirstOrDefault();
-            return Transform(r);
+            var oReturn =  Transform(r);
+            return oReturn;
 
         }
 

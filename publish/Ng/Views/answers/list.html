@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered">
+                <tr>
+                    <th>
+                        <span language-text="views.employee.list.table.employee">Alias</span>
+
+                    </th>
+                    <th width="17%">
+
+                    </th>
+                </tr>
+                <tr ng-repeat="e in Answers">
+                    <td>{{e.UserName}}</td>
+                    <td>
+                        <div class="pull-right">
+                            <a href="#!/answer/{{e.UserId}}" class="btn btn-primary btn-sm"><i class="fa fa-table"></i> <span language-text="views.employee.list.roles">View Answer</span> </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<pagination boundary-links="true" total-items="count" items-per-page="screen.PageSize" ng-model="PageNo" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>-->
+    </div>
+</div>

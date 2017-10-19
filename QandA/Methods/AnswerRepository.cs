@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using QandA.Db;
+using QandA.Interface;
 
 namespace QandA.Methods
 {
-    public class AnswerRepository
+    public class AnswerRepository : IAnswerRepository
     {
         readonly QandAEntities db;
         public AnswerRepository(QandAEntities db)
@@ -26,13 +27,18 @@ namespace QandA.Methods
             return Transform(r);
         }
 
+        public List<AnswerEx> GetAll()
+        {
+            var r = db.Answers.AsQueryable();
+            return Transform(r);
+        }
+
         public void Save(AnswerEx n)
         {
             var t = Transform(n);
-            if (t.UserId == 0)
-            {
+
                 db.Answers.Add(t);
-            }
+           
             db.SaveChanges();
         }
 
@@ -51,6 +57,7 @@ namespace QandA.Methods
             r.Id = n.Id;
             r.QuestionId = n.QuestionId;
             r.Answer1 = n.Answer1;
+            
        
             r.UserId = n.UserId;
 
@@ -60,9 +67,9 @@ namespace QandA.Methods
         public Answer Transform(AnswerEx n)
         {
             Answer r;
-            if (n.UserId > 0)
+            if (n.Id > 0)
             {
-                r = db.Answers.Where(o => o.UserId == n.UserId).FirstOrDefault();
+                r = db.Answers.Where(o => o.Id == n.Id).FirstOrDefault();
             }
             else
             {

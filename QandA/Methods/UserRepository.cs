@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using QandA.Db;
-
+using QandA.Interface;
 namespace QandA.Methods
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         readonly QandAEntities db;
         public UserRepository(QandAEntities db)
